@@ -2,19 +2,43 @@ package primitives;
 
 import java.util.Objects;
 
-public class Ray {
-    final Point p0;
-    final Vector dir;
+/**
 
+ The Ray class represents a ray in 3D space, defined by a starting point and a direction vector.
+ */
+ public class Ray {
+ /**
+
+ The starting point of the ray.
+ */
+final Point p0;
+/**
+
+ The direction vector of the ray.
+ */
+final Vector dir;
+    /**
+     * Constructs a new Ray object with the specified starting point and direction vector.
+     * @param p the starting point of the ray
+     * @param v the direction vector of the ray
+     */
     public Ray(Point p, Vector v) {
         p0 = p;
         dir = v.normalize();
     }
 
+    /**
+     * Returns the starting point of the ray.
+     * @return the starting point of the ray
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * Returns the normalized direction vector of the ray.
+     * @return the normalized direction vector of the ray
+     */
     public Vector getDir() {
         return dir;
     }
