@@ -31,7 +31,7 @@ public class Vector extends Point{
         return ((xyz.d1* xyz.d1)+(xyz.d2* xyz.d2)+(xyz.d3*xyz.d3));
     }
     public double length(){
-        return (Math.sqrt(length()));
+        return (Math.sqrt(lengthSquared()));
     }
     public Vector normalize(){
         return new Vector(xyz.reduce(length()));

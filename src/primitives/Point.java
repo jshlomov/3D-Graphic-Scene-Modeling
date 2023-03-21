@@ -18,7 +18,7 @@ public class Point {
     }
 
     public Vector subtract(Point point) {
-        return new Vector(point.xyz.subtract(this.xyz));
+        return new Vector(this.xyz.subtract(point.xyz));
     }
 
     public double distanceSquared(Point p) {
