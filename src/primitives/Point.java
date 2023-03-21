@@ -48,7 +48,7 @@ import java.util.Objects;
     public Vector subtract(Point point) {
         return new Vector(this.xyz.subtract(point.xyz));
     }
-
+        /**
      Calculates and returns the squared Euclidean distance between this point and the given point.
      @param p the point to calculate the distance to
      @return the squared Euclidean distance between this point and the given point
@@ -73,7 +73,6 @@ import java.util.Objects;
         if (!(o instanceof Point point)) return false;
         return xyz.equals(point.xyz);
     }
-    /**
 
     @Override
     public String toString() {
