@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7c901-38b5-4a04-8286-95284b26e3e4" name="Changes" comment="Point class">
-      <change afterPath="$PROJECT_DIR$/src/geometries/Geometry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+    <list default="true" id="26b7c901-38b5-4a04-8286-95284b26e3e4" name="Changes" comment="final changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,24 +39,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/mavo/ISE5783_7162_7261/src/geometries",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/mavo/ISE5783_7162_7261/src/geometries&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\mavo\ISE5783_7162_7261\src\test" />
       <recent name="C:\mavo\ISE5783_7162_7261\src\geometries" />
+      <recent name="C:\mavo\ISE5783_7162_7261\src\test" />
       <recent name="C:\mavo\ISE5783_7162_7261\src\primitives" />
       <recent name="C:\mavo\ISE5783_7162_7261\src" />
     </key>
@@ -78,7 +76,8 @@
       <workItem from="1677850610409" duration="1459000" />
       <workItem from="1678806317868" duration="4750000" />
       <workItem from="1678813336645" duration="660000" />
-      <workItem from="1679330829082" duration="2986000" />
+      <workItem from="1679330829082" duration="3724000" />
+      <workItem from="1679415710848" duration="844000" />
     </task>
     <task id="LOCAL‎-00001" summary="given modules">
       <created>1677951338571</created>
@@ -101,7 +100,28 @@
       <option name="project" value="LOCAL‎" />
       <updated>1678809901457</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="all flat geometries">
+      <created>1679333887167</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1679333887167</updated>
+    </task>
+    <task id="LOCAL‎-00005" summary="all flat geometries">
+      <created>1679333900596</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1679333900596</updated>
+    </task>
+    <task id="LOCAL‎-00006" summary="2">
+      <created>1679335058440</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1679335058440</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +130,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="given modules" />
     <MESSAGE value="Point class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Point class" />
+    <MESSAGE value="all flat geometries" />
+    <MESSAGE value="2" />
+    <option name="LAST_COMMIT_MESSAGE" value="2" />
   </component>
 </project>

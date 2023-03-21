@@ -27,7 +27,7 @@ import java.util.Objects;
      Constructs a new point with the given coordinates.
      @param xyz the coordinates of the point as a {@code Double3} object
      */
-    public Point(Double3 xyz) {
+    Point(Double3 xyz) {
         this.xyz = xyz;
     }
     /**
@@ -70,12 +70,13 @@ import java.util.Objects;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Point point)) return false;
-        return xyz.equals(point.xyz);
+        if (o instanceof Point point)
+            return xyz.equals(point.xyz);
+        return false;
     }
 
     @Override
     public String toString() {
-        return "Point:" + xyz.toString();
+        return xyz.toString();
     }
 }

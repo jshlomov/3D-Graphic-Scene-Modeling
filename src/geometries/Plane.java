@@ -16,7 +16,6 @@ public class Plane implements Geometry {
     final Vector normal;
 
     /**
-
      Constructs a plane from three points on the plane.
      @param point1 a point on the plane
      @param point2 a point on the plane
@@ -27,7 +26,6 @@ public class Plane implements Geometry {
         normal = null;
     }
     /**
-
      Constructs a plane from a point on the plane and a normal vector.
      @param q0 a point on the plane
      @param normal the normal vector to the plane
@@ -37,7 +35,6 @@ public class Plane implements Geometry {
         this.normal = normal.normalize();
     }
     /**
-
      Returns a point on the plane.
      @return a point on the plane
      */
@@ -45,7 +42,6 @@ public class Plane implements Geometry {
         return q0;
     }
     /**
-
      Returns the normal vector to the plane.
      @return the normal vector to the plane
      */
