@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class PointTest {
     Point p1 = new Point(1, 2, 3);
-
+    Point p2 = new Point(3,5,5);
 
     /**
      * Test method for {@link primitives.Point#add(Vector)}.
@@ -28,29 +28,38 @@ class PointTest {
         // =============== Boundary Values Tests ==================
     }
 
+    /**
+     * Test method for {@link primitives.Point#subtract(Point)}.
+     */
     @Test
     void subtract() {
         // ============ Equivalence Partitions Tests ==============
         assertEquals(new Vector(1, 1, 1), new Point(2, 3, 4).subtract(p1),
                 "ERROR: Point - Point does not work correctly");
 
-
         // =============== Boundary Values Tests ==================
     }
 
+    /**
+     * Test method for {@link primitives.Point#distanceSquared(Point)}.
+     */
     @Test
     void distanceSquared() {
         // ============ Equivalence Partitions Tests ==============
-
+        int sqrtDistance = 17;
+        assertEquals(sqrtDistance,p2.distanceSquared(p1),"ERROR: DistanceSquared() wrong value");
 
 
         // =============== Boundary Values Tests ==================
     }
-
+    /**
+     * Test method for {@link primitives.Point#distance(Point)}.
+     */
     @Test
     void distance() {
         // ============ Equivalence Partitions Tests ==============
-
+        Double distance = Math.sqrt(17);
+        assertEquals(distance,p2.distance(p1),"ERROR: DistanceSquared() wrong value");
 
 
         // =============== Boundary Values Tests ==================
