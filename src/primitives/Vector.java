@@ -50,23 +50,23 @@ public class Vector extends Point {
     public Vector scale(double d) {
         return new Vector(xyz.scale(d));
     }
+
     /**
      * Returns the dot product of this vector and the specified vector.
      *
      * @param vector the vector to compute the dot product with
      * @return the dot product of this vector and the specified vector
      */
-
     public double dotProduct(Vector vector) {
         return ((vector.xyz.d1 * this.xyz.d1) + (vector.xyz.d2 * this.xyz.d2) + (vector.xyz.d3 * this.xyz.d3));
     }
+
     /**
      * Returns the cross product of this vector and the specified vector.
      *
      * @param vector the vector to compute the cross product with
      * @return the cross product of this vector and the specified vector
      */
-
     public Vector crossProduct(Vector vector) {
         return new Vector((xyz.d2 * vector.xyz.d3) - (xyz.d3 * vector.xyz.d2),
                 (xyz.d3 * vector.xyz.d1) - (xyz.d1 * vector.xyz.d3),

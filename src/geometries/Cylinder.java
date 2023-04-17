@@ -39,6 +39,6 @@ public class Cylinder extends Tube {
 
     @Override
     public Vector getNormal(Point point) {
-        return super.getNormal(point);
+        return null;
     }
 }

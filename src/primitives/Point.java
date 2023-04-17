@@ -70,13 +70,11 @@ import java.util.Objects;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Point point)
-            return xyz.equals(point.xyz);
-        return false;
+        return (o instanceof Point point) && xyz.equals(point.xyz);
     }
 
     @Override
     public String toString() {
-        return xyz.toString();
+        return "" + xyz;
     }
 }

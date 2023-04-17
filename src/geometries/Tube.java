@@ -37,7 +37,7 @@ public class Tube extends RadialGeometry {
     }
     @Override
     public Vector getNormal(Point point) {
-        return super.getNormal(point);
+        return null;
     }
 
 }
