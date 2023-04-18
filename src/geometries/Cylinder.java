@@ -39,6 +39,25 @@ public class Cylinder extends Tube {
 
     @Override
     public Vector getNormal(Point point) {
-        return null;
+        Point P0 = axisRay.getP0(); //middle of starting base
+        Vector v = axisRay.getDir();
+        Point P1 = P0.add(v.scale(height)); //middle of far base
+
+        //if point is on the starting base - if distance from p0 is radius, and orthogonal to ray (so it is not on ray itself)
+        if ((point.distance(P0) <= radius) && (point.subtract(P0).dotProduct(v) == 0)) {
+            return getAxisRay().getDir().scale(-1);
+        }
+        //if point is on the far base - if distance from p1 is radius, and orthogonal to ray (so it is not on ray itself)
+        else if ((point.distance(P1) <= radius) && (point.subtract(P1).dotProduct(v) == 0)) {
+            return getAxisRay().getDir();
+        }
+
+        // if point is on round surfaces - not based:
+        else {
+            Vector PMinusP0 = point.subtract(P0);
+            double t = v.dotProduct(PMinusP0);
+            Point O = P0.add(v.scale(t));
+            return (point.subtract(O)).normalize();
+        }
     }
 }

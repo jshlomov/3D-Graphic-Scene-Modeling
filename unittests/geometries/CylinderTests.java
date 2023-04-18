@@ -42,8 +42,6 @@ class CylinderTests {
 
         //TC11 - corner far base - normal should be like inside base
         assertEquals(cl.getNormal(new Point(0, 1, 2)), new Vector(0, 1, 0));
-
-
     }
 
 }
