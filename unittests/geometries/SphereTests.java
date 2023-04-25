@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class SphereTests {
-
     /**
      * Test method for {@link Sphere#getNormal(Point)}./
      */
@@ -24,7 +23,7 @@ class SphereTests {
     void testGetNormal() {
 
         // ============ Equivalence Partitions Tests ==============
-        Sphere sp = new Sphere(1, new Point(0, 0, 0));
+        Sphere sp = new Sphere(new Point(0, 0, 0), 1);
         double sq = Math.sqrt(1 / 3d);
         Vector N = sp.getNormal(new Point(sq, sq, sq));
 

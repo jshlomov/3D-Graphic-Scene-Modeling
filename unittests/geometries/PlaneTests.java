@@ -12,10 +12,30 @@ import primitives.Vector;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PlaneTests {
+
+    /**
+     * Test method for ctor who get 3 point.
+     */
+    @Test
+    public void testPlane() {
+
+        // =============== Boundary Values Tests ==================
+
+        // Test for 2 similar points
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(1, 1, 1), new Point(1,  1, 1), new Point(0, 0, 0))
+                ,"Constructor with same points - error");
+
+        // Check for 3 points on one straight line
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(1, 1, 1), new Point(2, 2, 2), new Point(3, 3, 3))
+                ,"Constructor with points on one straight line - error");
+    }
+
     /**
      * Test method for {@link Plane#getNormal(Point)}.
      */

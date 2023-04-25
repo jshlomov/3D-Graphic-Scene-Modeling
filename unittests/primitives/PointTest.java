@@ -20,10 +20,8 @@ class PointTest {
     @Test
     void add() {
         // ============ Equivalence Partitions Tests ==============
-
-        // TC01:
         assertEquals(new Point(0, 0, 0), p1.add(new Vector(-1, -2, -3)),
-                "ERROR: Point + Vector does not work correctly");
+                "ERROR: add(Point) does not work correctly");
     }
 
     /**

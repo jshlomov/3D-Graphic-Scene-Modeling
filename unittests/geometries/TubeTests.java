@@ -18,9 +18,11 @@ class TubeTests {
      */
     @Test
     void testGetNormal() {
-        // ============ Equivalence Partitions Tests ==============
-        // TC01: There is a simple single test here
         Tube tube = new Tube(1.0, new Ray(new Point(0, 0, 1), new Vector(0, 1, 0)));
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC01: Wrong normal calculation
         assertEquals(new Vector(0, 0, 1), tube.getNormal(new Point(0, 0.5, 2)), "Bad normal to tube");
     }
 }

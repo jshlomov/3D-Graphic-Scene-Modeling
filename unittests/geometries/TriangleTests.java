@@ -35,7 +35,7 @@ public class TriangleTests {
         double sq = Math.sqrt(1 / 3d);
 
         // Test that result of getNormal is proper
-        assertEquals(testT.getNormal(new Point(1, 0, 0)), new Vector(sq, sq, sq));
+        assertEquals(testT.getNormal(new Point(1, 0, 0)), new Vector(sq, sq, sq), "Bad normal to Triangle");
     }
 }
 

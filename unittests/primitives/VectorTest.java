@@ -47,7 +47,7 @@ class VectorTest {
 
         // Test that result of dotProduct is proper
         assertEquals(28, v1.dotProduct(v2), "ERROR: dotProduct() wrong value");
-        assertEquals(0, v1.dotProduct(new Vector(0, 3, -2)), "ERROR: dotProduct() wrong value");
+        assertEquals(0, v1.dotProduct(v3), "ERROR: dotProduct() wrong value");
     }
 
     /**
