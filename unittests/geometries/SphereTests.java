@@ -15,6 +15,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Unit tests for geometries.Sphere class
+ */
 class SphereTests {
     /**
      * Test method for {@link Sphere#getNormal(Point)}./
@@ -25,9 +28,8 @@ class SphereTests {
         // ============ Equivalence Partitions Tests ==============
         Sphere sp = new Sphere(new Point(0, 0, 0), 1);
         double sq = Math.sqrt(1 / 3d);
-        Vector N = sp.getNormal(new Point(sq, sq, sq));
 
-        // Test that result of getNormal is proper.
-        assertEquals(N, new Vector(sq, sq, sq));
+        // TC01: Test that result of getNormal is proper.
+        assertEquals(new Vector(sq, sq, sq), sp.getNormal(new Point(sq, sq, sq)), "Bad normal to Sphere");
     }
 }

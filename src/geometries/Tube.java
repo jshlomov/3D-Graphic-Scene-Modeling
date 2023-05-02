@@ -15,7 +15,7 @@ import primitives.Vector;
 public class Tube extends RadialGeometry {
 
     /** The axis ray of the tube */
-    final Ray axisRay;
+    protected final Ray axisRay;
 
     /**
 
@@ -36,20 +36,15 @@ public class Tube extends RadialGeometry {
         return axisRay;
     }
 
-    /**
-     * function that receive a point in a body and return a normal in this point to the body
-     *
-     * @param point pointing in the direction of the normal
-     * @return normal vector to the Geometry
-     */
     @Override
-    public Vector getNormal(Point point) {
-        Vector v = axisRay.getDir();
-        Point p0 = axisRay.getP0();
-        double t= point.subtract(p0).dotProduct(v);
-        // getting the center point
-        Point center = p0.add(v.scale(t));
-        return (point.subtract(center)).normalize();
+    public Vector getNormal(Point p) {
+        double t = (axisRay.getDir()).dotProduct(p.subtract(axisRay.getP0()));
+        if (t != 0) //in case the point is not across the ray point
+        {
+            Point center = axisRay.getP0().add(axisRay.getDir().scale(t));
+            return p.subtract(center).normalize();
+        }
+        else // in case the point is across the ray point
+            return p.subtract(axisRay.getP0()).normalize();
     }
-
 }

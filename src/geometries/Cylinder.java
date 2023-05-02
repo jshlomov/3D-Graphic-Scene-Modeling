@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
 /**
@@ -16,7 +17,7 @@ public class Cylinder extends Tube {
     /**
      * The height of the cylinder
      */
-    final double height;
+    private final double height;
 
     /**
      * Constructs a new Cylinder object with the given radius, axis ray, and height.
@@ -46,20 +47,10 @@ public class Cylinder extends Tube {
         Point P1 = P0.add(v.scale(height)); //middle of far base
 
         try {
-            //if point is on the starting base - if distance from p0 is radius, and orthogonal to ray (so it is not on ray itself)
-            //if point is on the far base - if distance from p1 is radius, and orthogonal to ray (so it is not on ray itself)
-            if ((point.distance(P0) <= radius) && (point.subtract(P0).dotProduct(v) == 0)
-                    || (point.distance(P1) <= radius) && (point.subtract(P1).dotProduct(v) == 0)) {
+            if (Util.isZero(point.subtract(P0).dotProduct(v)) || Util.isZero((point.subtract(P1).dotProduct(v))))
                 return v;
-            }
-
-            // if point is on round surfaces - not based:
-            else {
-                Vector PMinusP0 = point.subtract(P0);
-                double t = v.dotProduct(PMinusP0);
-                Point O = P0.add(v.scale(t));
-                return (point.subtract(O)).normalize();
-            }
+            else
+                return super.getNormal(point);
         } catch (Exception e) {
             return v;
         }

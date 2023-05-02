@@ -12,6 +12,9 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit tests for geometries.Cylinder class
+ */
 class CylinderTests {
 
     /**
@@ -27,27 +30,27 @@ class CylinderTests {
         // Test that result of getNormal is proper
 
         //TC01 - inside first base:
-        assertEquals(cl.getNormal(new Point(0, -2, 1)), new Vector(0, 1, 0));
+        assertEquals(cl.getNormal(new Point(0, -2, 1)), new Vector(0, 1, 0), "bad normal to Cylinder");
 
         //TC02 - inside far base:
-        assertEquals(cl.getNormal(new Point(0, 1, 1)), new Vector(0, 1, 0));
+        assertEquals(cl.getNormal(new Point(0, 1, 1)), new Vector(0, 1, 0), "bad normal to Cylinder") ;
 
         //TC03 - round surface:
-        assertEquals(cl.getNormal(new Point(0, 0, 2)), new Vector(0, 0, 1));
+        assertEquals(cl.getNormal(new Point(0, 0, 2)), new Vector(0, 0, 1), "bad normal to Cylinder");
 
         // =============== Boundary Values Tests ==================
-        //TC04 - center point of starting base:
-        assertEquals(cl.getNormal(ray.getP0()), new Vector(0, 1, 0));
 
-        //TC05 - center point of far base:
-        assertEquals(cl.getNormal(ray.getP0().add(ray.getDir().scale(3))), new Vector(0, 1, 0));
+        //TC11 - center point of starting base:
+        assertEquals(cl.getNormal(ray.getP0()), new Vector(0, 1, 0), "bad normal to Cylinder");
 
+        //TC12 - center point of far base:
+        assertEquals(cl.getNormal(ray.getP0().add(ray.getDir().scale(3))), new Vector(0, 1, 0), "bad normal to Cylinder");
 
-//        //TC10 - corner first base, normal should be like inside base
-//        assertEquals(cl.getNormal(new Point(0, -2, 2)), new Vector(0, 1, 0));
-//
-//        //TC11 - corner far base - normal should be like inside base
-//        assertEquals(cl.getNormal(new Point(0, 1, 2)), new Vector(0, 1, 0));
+        //TC13 - corner first base, normal should be like inside base
+        assertEquals(cl.getNormal(new Point(0, -2, 2)), new Vector(0, 1, 0), "bad normal to Cylinder");
+
+        //TC14 - corner far base - normal should be like inside base
+        assertEquals(cl.getNormal(new Point(0, 1, 2)), new Vector(0, 1, 0), "bad normal to Cylinder");
     }
 
 }

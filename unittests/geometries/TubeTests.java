@@ -12,6 +12,10 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+/**
+ * Unit tests for geometries.Tube class
+ */
 class TubeTests {
     /**
      * Test method for {@link Tube#getNormal(Point)}.
@@ -24,5 +28,9 @@ class TubeTests {
 
         // TC01: Wrong normal calculation
         assertEquals(new Vector(0, 0, 1), tube.getNormal(new Point(0, 0.5, 2)), "Bad normal to tube");
+
+        // =============== Boundary Values Tests ==================
+        //TC10 - Wrong normal when the point is across the ray:
+        assertEquals(new Vector(0, 0, 1), tube.getNormal(new Point(0, 0, 2)), "Bad normal to tube");
     }
 }

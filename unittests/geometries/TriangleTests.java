@@ -12,21 +12,17 @@ import primitives.Vector;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for geometries.Triangle class
  */
-
 public class TriangleTests {
     /**
      * Test method for {@link Triangle#getNormal(Point)}.
      */
     @Test
     void getNormal() {
-
-        // ============ Equivalence Partitions Tests ==============
         Triangle testT = new Triangle(
                 new Point(1, 0, 0),
                 new Point(0, 1, 0),
@@ -34,8 +30,15 @@ public class TriangleTests {
         );
         double sq = Math.sqrt(1 / 3d);
 
-        // Test that result of getNormal is proper
-        assertEquals(testT.getNormal(new Point(1, 0, 0)), new Vector(sq, sq, sq), "Bad normal to Triangle");
+        // ============ Equivalence Partitions Tests ==============
+
+        //?? ask if its necessary
+        // TC01: Test that result of getNormal is proper
+        assertEquals(new Vector(sq, sq, sq), testT.getNormal(new Point(1, 0, 0)), "Bad normal to Triangle");
+
+        // TC02: Two opposite sides of the vector
+        assertTrue(new Vector(sq, sq, sq).equals(testT.getNormal(new Point(0, 0, 1)))
+                ||  new Vector(-1 * sq, -1 * sq, -1 * sq).equals(testT.getNormal(new Point(0, 0, 1))),"Bad normal to plane");
     }
 }
 
