@@ -44,6 +44,18 @@ public class Ray {
         return dir;
     }
 
+    /**
+     * return - cross point with the geometry body by getting the length
+     * from the start of the ray
+     * @param t length from the start of the ray
+     * @return point
+     *
+     */
+    public Point getPoint(double t) {
+        return getP0().add(getDir().scale(t));
+    }
+
+
     @Override
     public String toString() {
         return "Point: " + p0 + "\n" +

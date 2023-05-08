@@ -1,13 +1,16 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
 
  The Geometry interface represents a geometric shape in 3D space and provides methods for working with that shape.
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
     /**
      Returns the normal vector to this Geometry shape at the specified point on the shape's surface.
@@ -15,4 +18,7 @@ public interface Geometry {
      @return A normalized Vector representing the normal to the shape at the given point.
      */
      Vector getNormal(Point point);
+
+    @Override
+    List<Point> findIntersections(Ray ray);
 }

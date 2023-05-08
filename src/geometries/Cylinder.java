@@ -51,7 +51,7 @@ public class Cylinder extends Tube {
                 return v;
             else
                 return super.getNormal(point);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return v;
         }
     }

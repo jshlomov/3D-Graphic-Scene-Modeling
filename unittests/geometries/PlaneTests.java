@@ -62,4 +62,67 @@ class PlaneTests {
                         || new Vector(-1 * sq, -1 * sq, -1 * sq).equals(testPlane.getNormal(new Point(0, 0, 1)))
                 ,"Bad normal to plane");
     }
+
+    @Test
+    public void FindIntersections() {
+
+        Plane plane = new Plane(
+                new Point(0, 2, 2),
+                new Point(2, 0, 2),
+                new Point(2, 2, 0)
+        );
+
+        Point p1 = new Point(1,1,0);
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // **** Group:The Ray must be neither orthogonal nor parallel to the plane
+
+        // TC01: Ray intersects the plane(1 point)
+        List<Point> result = plane.findIntersections(new Ray(p1, new Vector(0, 0, 1)));
+        assertEquals(1, result.size(),"Wrong number of points");
+        assertEquals(new Point(1, 1, 2), result.get(0),"Ray crosses plane once");
+
+        // TC02: Ray does not intersect the plane(0 point)
+        assertNull(plane.findIntersections(new Ray(p1, new Vector(0,0,-1)))
+                ,"Ray's crosses the plane");
+
+        // =============== Boundary Values Tests ==================
+
+        // **** Group: Ray is parallel to the plane
+
+        // TC10: The ray is not included in the plane
+        assertNull(plane.findIntersections(new Ray(p1, new Vector(-0.5, -0.5, 1)))
+                ,"Ray's crosses the plane");
+
+        // TC11: The ray included in the plane
+        assertNull(plane.findIntersections(new Ray(new Point(0,4,0), new Vector(-0.5,-0.5,1)))
+                ,"Ray's crosses the plane");
+
+        // **** Group: Ray is orthogonal to the plane
+
+        // TC12: The ray starts is before the plane
+        result = plane.findIntersections(new Ray(p1, new Vector(0.5,0.5,1)));
+        assertEquals(1, result.size(),"Wrong number of points");
+        assertEquals(new Point(1.5,1.5,1), result.get(0),"Ray crosses plane once");
+
+        // TC13: The ray starts is in the plane
+        assertNull(plane.findIntersections(new Ray(new Point(1.5,1.5,1), new Vector(0.5,0.5,1)))
+                ,"Ray's crosses the plane");
+
+        // TC14: The ray starts is after the plane
+        assertNull(plane.findIntersections(new Ray(new Point(2, 2, 2), new Vector(0.5,0.5,1)))
+                ,"Ray's crosses the plane");
+
+        // ***********
+
+        // TC15: Ray is neither orthogonal nor parallel to and begins at the plane
+        assertNull(plane.findIntersections(new Ray(new Point(1.5,1.5,1), new Vector(0,0,1)))
+                ,"Ray's crosses the plane");
+
+        // TC16: Ray is neither orthogonal nor parallel to the plane and begins in the
+        // same point
+        assertNull(plane.findIntersections(new Ray(new Point(0,2,2), new Vector(0, 0, 1)))
+                ,"Ray's crosses the plane");
+    }
 }

@@ -1,7 +1,12 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
+import java.util.List;
+
+import static primitives.Util.isZero;
 
 /**
  * Represents a plane in 3D space defined by a point on the plane and a normal vector.
@@ -27,9 +32,9 @@ public class Plane implements Geometry {
      */
     public Plane(Point point1, Point point2, Point point3) {
         q0 = point1;
-        Vector U = point2.subtract(point1);
-        Vector V = point3.subtract(point1);
-        normal = U.crossProduct(V).normalize();
+        Vector u = point2.subtract(point1);
+        Vector v = point3.subtract(point1);
+        normal = u.crossProduct(v).normalize();
     }
 
     /**
@@ -70,5 +75,23 @@ public class Plane implements Geometry {
     @Override
     public Vector getNormal(Point point) {
         return normal;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        try {
+            double nQMinusP0 = normal.dotProduct(q0.subtract(ray.getP0()));
+            double nv = normal.dotProduct(ray.getDir());
+            double t = Util.alignZero(nQMinusP0 / nv);
+            if (q0.equals(ray.getP0()) || Util.isZero(nv) || t < 0)
+                return null;
+            else
+                return List.of(ray.getPoint(t));
+        }
+        // in case nQMinusP0 is 0 (Ray is neither orthogonal nor parallel
+        // to the plane and begins in the same point)
+        catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 }
