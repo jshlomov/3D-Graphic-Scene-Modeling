@@ -45,5 +45,4 @@ class GeometriesTest {
         assertNull(collection.findIntersections(new Ray(new Point(-1, 0, 0), new Vector(1, 1, 0)))
                 , "No geometry shapes in the collection");
     }
-
 }
