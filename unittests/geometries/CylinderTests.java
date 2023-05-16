@@ -33,7 +33,7 @@ class CylinderTests {
         assertEquals(cl.getNormal(new Point(0, -2, 1)), new Vector(0, 1, 0), "bad normal to Cylinder");
 
         //TC02 - inside far base:
-        assertEquals(cl.getNormal(new Point(0, 1, 1)), new Vector(0, 1, 0), "bad normal to Cylinder") ;
+        assertEquals(cl.getNormal(new Point(0, 1, 1)), new Vector(0, 1, 0), "bad normal to Cylinder");
 
         //TC03 - round surface:
         assertEquals(cl.getNormal(new Point(0, 0, 2)), new Vector(0, 0, 1), "bad normal to Cylinder");

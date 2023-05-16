@@ -9,6 +9,7 @@ public class Vector extends Point {
 
     /**
      * Creates a new vector with the given coordinates.
+     *
      * @param d1 The x coordinate.
      * @param d2 The y coordinate.
      * @param d3 The z coordinate.
@@ -22,6 +23,7 @@ public class Vector extends Point {
 
     /**
      * Creates a new vector with the given coordinates.
+     *
      * @param xyz A {@link Double3} object containing the x, y, and z coordinates.
      * @throws IllegalArgumentException if the vector is equal to the zero vector.
      */
@@ -30,6 +32,7 @@ public class Vector extends Point {
         if (xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("The vector is equal to zero");
     }
+
     /**
      * Returns a new vector that is the sum of this vector and the specified vector.
      *
@@ -40,6 +43,7 @@ public class Vector extends Point {
     public Vector add(Vector vector) {
         return new Vector(xyz.add(vector.xyz));
     }
+
     /**
      * Returns a new vector that is the scalar product of this vector and the specified value.
      *
@@ -72,6 +76,7 @@ public class Vector extends Point {
                 (xyz.d3 * vector.xyz.d1) - (xyz.d1 * vector.xyz.d3),
                 (xyz.d1 * vector.xyz.d2) - (xyz.d2 * vector.xyz.d1));
     }
+
     /**
      * Returns the squared length of this vector.
      *
@@ -81,6 +86,7 @@ public class Vector extends Point {
     public double lengthSquared() {
         return ((xyz.d1 * xyz.d1) + (xyz.d2 * xyz.d2) + (xyz.d3 * xyz.d3));
     }
+
     /**
      * Returns the length of this vector.
      *
@@ -90,6 +96,7 @@ public class Vector extends Point {
     public double length() {
         return (Math.sqrt(lengthSquared()));
     }
+
     /**
      * Returns a new vector that is the normalization of this vector.
      *

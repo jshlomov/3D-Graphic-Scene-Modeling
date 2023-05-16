@@ -5,10 +5,17 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Unit tests for geometries.Geometries class
+ */
 class GeometriesTest {
 
+    /**
+     * Test method for {@link Cylinder#findIntersections(Ray)}.
+     */
     @Test
     void findIntersections() {
 

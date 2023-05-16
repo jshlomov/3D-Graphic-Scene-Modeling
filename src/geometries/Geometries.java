@@ -7,39 +7,53 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * The Geometries class represents a collection of intersectable geometries.
  */
 public class Geometries implements Intersectable {
 
-    private List<Intersectable> items;
+    private final List<Intersectable> items = new LinkedList<>();
 
+    /**
+     * Constructs an empty Geometries object.
+     */
     public Geometries() {
-        items = new LinkedList<>();
     }
 
+    /**
+     * Constructs a Geometries object and adds the specified geometries to it.
+     *
+     * @param geometries the geometries to add to the collection
+     */
     public Geometries(Intersectable... geometries) {
-        items = List.of(geometries);
+        add(geometries);
     }
 
+    /**
+     * Adds the specified geometries to the collection.
+     *
+     * @param geometries the geometries to add
+     */
     public void add(Intersectable... geometries) {
         items.addAll(List.of(geometries));
     }
 
+    /**
+     * Finds the intersections between the ray and the geometries in the collection.
+     *
+     * @param ray the ray to intersect with the geometries
+     * @return a list of intersection points, or null if no intersections exist
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
-
-        List<Point> intersections = new LinkedList<>();
+        List<Point> intersections = null;
         for (var geometry : items) {
-            // declare list as null
-            List<Point> geoIntersections = geometry.findIntersections(ray) ;
-
+            List<Point> geoIntersections = geometry.findIntersections(ray);
             if (geoIntersections != null) {
+                if (intersections == null)
+                    intersections = new LinkedList<>();
                 intersections.addAll(geoIntersections);
             }
         }
-        if (intersections.size() > 0) {
-            return intersections;
-        }
-        return null;
+        return intersections;
     }
 }

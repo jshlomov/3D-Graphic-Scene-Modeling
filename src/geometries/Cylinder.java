@@ -40,18 +40,18 @@ public class Cylinder extends Tube {
         return height;
     }
 
+
     @Override
     public Vector getNormal(Point point) {
-        Point P0 = axisRay.getP0(); //middle of starting base
+        Point p0 = axisRay.getP0(); //middle of starting base
         Vector v = axisRay.getDir();
-        Point P1 = P0.add(v.scale(height)); //middle of far base
+        Point p1 = p0.add(v.scale(height)); //middle of far base
 
         try {
-            if (Util.isZero(point.subtract(P0).dotProduct(v)) || Util.isZero((point.subtract(P1).dotProduct(v))))
-                return v;
-            else
-                return super.getNormal(point);
+            return Util.isZero(point.subtract(p0).dotProduct(v)) || Util.isZero((point.subtract(p1).dotProduct(v)))
+                    ? v : super.getNormal(point);
         } catch (IllegalArgumentException e) {
+            // when the point is at a base center
             return v;
         }
     }
