@@ -1,7 +1,7 @@
 /**
  * @author: Yonatan Shlomov 319217162
- *          Itzik Nisan 312517261
- *Creating unit tests according to TDD principle
+ * Itzik Nisan 312517261
+ * Creating unit tests according to TDD principle
  */
 package geometries;
 

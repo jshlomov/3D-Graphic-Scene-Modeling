@@ -1,25 +1,30 @@
 package geometries;
 
-import primitives.*;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
 import java.util.List;
+import static primitives.Util.alignZero;
 
 /**
-
- A class representing a sphere in three-dimensional space.
-
- The sphere is defined by a radius and a center point.
-
- It extends the RadialGeometry class.
+ * A class representing a sphere in three-dimensional space.
+ * <p>
+ * The sphere is defined by a radius and a center point.
+ * <p>
+ * It extends the RadialGeometry class.
  */
-public class Sphere extends RadialGeometry{
+public class Sphere extends RadialGeometry {
 
-    /** The center point of the sphere */
+    /**
+     * The center point of the sphere
+     */
     private final Point center;
 
     /**
-     Constructs a new Sphere object with the given radius and center point.
-     @param radius the radius of the sphere
-     @param center the center point of the sphere
+     * Constructs a new Sphere object with the given radius and center point.
+     *
+     * @param radius the radius of the sphere
+     * @param center the center point of the sphere
      */
     public Sphere(Point center, double radius) {
         super(radius);
@@ -27,8 +32,9 @@ public class Sphere extends RadialGeometry{
     }
 
     /**
-     Returns the center point of the sphere.
-     @return the center point of the sphere
+     * Returns the center point of the sphere.
+     *
+     * @return the center point of the sphere
      */
     public Point getCenter() {
         return center;
@@ -45,24 +51,28 @@ public class Sphere extends RadialGeometry{
         return (point.subtract(center)).normalize();
     }
 
+    /**
+     * Finds intersections of a ray with sphere and returns them as list of points
+     *
+     * @param ray
+     * @return List<Point> - list of intersections in geometric object
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         if (center.equals(ray.getP0()))
-            return List.of(center.add(ray.getDir().scale(radius)));
+            return List.of(ray.getPoint(radius));
+
         Vector u = center.subtract(ray.getP0());
         double tm = ray.getDir().dotProduct(u);
-        double d = Math.sqrt(Util.alignZero(u.lengthSquared() - (tm*tm)));
-        if (d >= radius) return null;
-        double th = Math.sqrt(radius * radius - d * d);
+        double dSquared = u.lengthSquared() - (tm * tm);
+        double thSquared = alignZero(radiusSquared - dSquared);
+        if (thSquared <= 0) return null;
+        double th = Math.sqrt(thSquared);
+
         double t1 = tm + th;
+        if (alignZero(t1) <= 0) return null;
+
         double t2 = tm - th;
-        if (Util.alignZero(t1) > 0 && Util.alignZero(t2) > 0)
-            return List.of(ray.getPoint(t1), ray.getPoint(t2));
-        else if (Util.alignZero(t1) > 0)
-            return List.of(ray.getPoint(t1));
-        else if (Util.alignZero(t2) > 0)
-            return List.of(ray.getPoint(t2));
-        else
-            return null;
+        return alignZero(t2) > 0 ? List.of(ray.getPoint(t1), ray.getPoint(t2)) : List.of(ray.getPoint(t1));
     }
 }

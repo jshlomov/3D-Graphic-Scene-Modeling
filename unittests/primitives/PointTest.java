@@ -1,11 +1,12 @@
 /**
  * Creating unit tests according to TDD principle
- *  @author Yonatan and Itzik
+ *
+ * @author Yonatan and Itzik
  */
 package primitives;
 
 import org.junit.jupiter.api.Test;
-import static java.lang.System.out;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class PointTest {
     Point p1 = new Point(1, 2, 3);
-    Point p2 = new Point(3,5,5);
+    Point p2 = new Point(3, 5, 5);
 
     /**
      * Test method for {@link primitives.Point#add(Vector)}.
@@ -49,7 +50,7 @@ class PointTest {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Point squared distance wrong calculation
         int sqrtDistance = 17;
-        assertEquals(sqrtDistance,p2.distanceSquared(p1),"ERROR: DistanceSquared() wrong value");
+        assertEquals(sqrtDistance, p2.distanceSquared(p1), "ERROR: DistanceSquared() wrong value");
     }
 
     /**
@@ -58,9 +59,11 @@ class PointTest {
     @Test
     void distance() {
         // ============ Equivalence Partitions Tests ==============
-        // TC01: Point squared distance wrong calculation
-        Double distance = Math.sqrt(17);
-        assertEquals(distance,p2.distance(p1),"ERROR: DistanceSquared() wrong value");
+        // TC01: Point distance wrong calculation
+        assertEquals(Math.sqrt(17), p2.distance(p1), "ERROR: Distance() wrong value");
 
+        // =============== Boundary Values Tests ==================
+        // TC11: Point distance with itself wrong calculation
+        assertEquals(0, p1.distance(p1), "ERROR: Distance() wrong value");
     }
 }

@@ -4,6 +4,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
+
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -77,20 +78,23 @@ public class Plane implements Geometry {
         return normal;
     }
 
+    /**
+     * Finds intersections of a ray with plane and returns them as list of points
+     *
+     * @param ray
+     * @return List<Point> - list of intersections in geometric object
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         try {
             double nQMinusP0 = normal.dotProduct(q0.subtract(ray.getP0()));
             double nv = normal.dotProduct(ray.getDir());
+            if (isZero(nv)) return null;
             double t = Util.alignZero(nQMinusP0 / nv);
-            if (q0.equals(ray.getP0()) || Util.isZero(nv) || t < 0)
-                return null;
-            else
-                return List.of(ray.getPoint(t));
-        }
-        // in case nQMinusP0 is 0 (Ray is neither orthogonal nor parallel
-        // to the plane and begins in the same point)
-        catch (IllegalArgumentException e) {
+            return t <= 0 ? null : List.of(ray.getPoint(t));
+        } catch (IllegalArgumentException ignore) {
+            // in case nQMinusP0 is 0 (Ray is neither orthogonal nor parallel
+            // to the plane and begins in the same point)
             return null;
         }
     }
