@@ -31,24 +31,24 @@ public class Point {
     }
 
     /**
-     * TODO
-     * @return
+     * Returns the x-coordinate of the point
+     * @return the x-coordinate of the point
      */
     public double getX() {
         return xyz.d1;
     }
 
     /**
-     * TODO
-     * @return
+     * Returns the y-coordinate of the point
+     * @return the y-coordinate of the point
      */
     public double getY() {
         return xyz.d2;
     }
 
     /**
-     * TODO
-     * @return
+     * Returns the z-coordinate of the point
+     * @return the z-coordinate of the point
      */
     @SuppressWarnings("unused")
     public double getZ() {
