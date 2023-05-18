@@ -23,13 +23,13 @@ public class Double3 {
      * Third number
      */
     final double d3;
+    /** Zero's triad constant */
     public static final Double3 ZERO = new Double3(0, 0, 0);
-    /** Zero triad (0,0,0) */
-
 
     /**
      * One's triad (1,1,1)
      */
+    @SuppressWarnings("unused")
     public static final Double3 ONE = new Double3(1, 1, 1);
 
     /**
@@ -50,6 +50,7 @@ public class Double3 {
      *
      * @param value number value for all 3 numbers
      */
+    @SuppressWarnings("unused")
     public Double3(double value) {
         this.d1 = value;
         this.d2 = value;
@@ -138,7 +139,7 @@ public class Double3 {
      * @param k the test number
      * @return true if all the numbers are less than k, false otherwise
      */
-
+    @SuppressWarnings("unused")
     public boolean lowerThan(double k) {
         return d1 < k && d2 < k && d3 < k;
     }
@@ -151,6 +152,7 @@ public class Double3 {
      * other
      * triad, false otherwise
      */
+    @SuppressWarnings("unused")
     public boolean lowerThan(Double3 other) {
         return d1 < other.d1 && d2 < other.d2 && d3 < other.d3;
     }

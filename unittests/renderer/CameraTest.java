@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Dan
  */
 class CameraTest {
-    static final Point ZERO_POINT = new Point(0, 0, 0);
+    private static final Point ZERO_POINT = new Point(0, 0, 0);
 
     /**
      * Test method for

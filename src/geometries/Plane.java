@@ -54,6 +54,7 @@ public class Plane implements Geometry {
      *
      * @return a point on the plane
      */
+    @SuppressWarnings("unused")
     public Point getQ0() {
         return q0;
     }
@@ -78,12 +79,6 @@ public class Plane implements Geometry {
         return normal;
     }
 
-    /**
-     * Finds intersections of a ray with plane and returns them as list of points
-     *
-     * @param ray
-     * @return List<Point> - list of intersections in geometric object
-     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         try {

@@ -28,12 +28,6 @@ public class Triangle extends Polygon {
         super(point1, point2, point3);
     }
 
-    /**
-     * Finds intersections of a ray with triangle object and returns them as list of points
-     *
-     * @param ray
-     * @return List<Point> - list of intersections in geometric object
-     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         var intersection = plane.findIntersections(ray);

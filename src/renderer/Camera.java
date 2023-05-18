@@ -4,11 +4,10 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /**
- *
+ * The Camera class represents a camera in a 3D scene.
  */
 public class Camera {
     private final Point p0;
@@ -20,58 +19,12 @@ public class Camera {
     private double distance;
 
     /**
-     * @return the p0
-     */
-    public Point getP0() {
-        return p0;
-    }
-
-    /**
-     * @return the vUp
-     */
-    public Vector getvUp() {
-        return vUp;
-    }
-
-    /**
-     * @return the vTo
-     */
-    public Vector getvTo() {
-        return vTo;
-    }
-
-    /**
-     * @return the vRight
-     */
-    public Vector getvRight() {
-        return vRight;
-    }
-
-    /**
-     * @return the width
-     */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-     * @return the height
-     */
-    public double getHeigth() {
-        return height;
-    }
-
-    /**
-     * @return the distance
-     */
-    public double getDistance() {
-        return distance;
-    }
-
-    /**
-     * @param p0
-     * @param vUp
-     * @param vTo
+     * Constructs a camera with the given parameters.
+     *
+     * @param p0  the camera's position in 3D space
+     * @param vTo the direction the camera is facing
+     * @param vUp the up vector of the camera
+     * @throws IllegalArgumentException if the given vectors are not vertical
      */
     public Camera(Point p0, Vector vTo, Vector vUp) {
         if (!isZero(vUp.dotProduct(vTo)))
@@ -83,59 +36,131 @@ public class Camera {
     }
 
     /**
-     * A setter for the size of the view plane
+     * Gets the position of the camera.
      *
-     * @param width
-     * @param height
+     * @return the camera's position
+     */
+    @SuppressWarnings("unused")
+    public Point getP0() {
+        return p0;
+    }
+
+    /**
+     * Gets the up vector of the camera.
+     *
+     * @return the up vector
+     */
+    @SuppressWarnings("unused")
+    public Vector getVUp() {
+        return vUp;
+    }
+
+    /**
+     * Gets the direction the camera is facing.
+     *
+     * @return the direction vector
+     */
+    public Vector getVTo() {
+        return vTo;
+    }
+
+    /**
+     * Gets the right vector of the camera.
+     *
+     * @return the right vector
+     */
+    @SuppressWarnings("unused")
+    public Vector getVRight() {
+        return vRight;
+    }
+
+    /**
+     * Gets the width of the view plane.
+     *
+     * @return the width of the view plane
+     */
+    @SuppressWarnings("unused")
+    public double getWidth() {
+        return width;
+    }
+
+    /**
+     * Gets the height of the view plane.
+     *
+     * @return the height of the view plane
+     */
+    @SuppressWarnings("unused")
+    public double getHeight() {
+        return height;
+    }
+
+    /**
+     * Gets the distance between the camera and the view plane.
+     *
+     * @return the distance between the camera and the view plane
+     */
+    @SuppressWarnings("unused")
+    public double getDistance() {
+        return distance;
+    }
+
+    /**
+     * Sets the size of the view plane.
+     *
+     * @param width  the width of the view plane
+     * @param height the height of the view plane
      * @return the camera itself
+     * @throws IllegalArgumentException if width or height is negative or zero
      */
     public Camera setVPSize(double width, double height) {
-        if (width <= 0 || height <= 0)
-            throw new IllegalArgumentException("Width or height cannot be negative!");
+        if (alignZero(width) <= 0 || alignZero(height) <= 0)
+            throw new IllegalArgumentException("Width or height cannot be negative or zero!");
         this.width = width;
         this.height = height;
         return this;
     }
 
+    /**
+     * Sets the distance between the camera and the view plane.
+     *
+     * @param distance the distance between the camera and the view plane
+     * @return the camera itself
+     * @throws IllegalArgumentException if the distance is negative or zero
+     */
     public Camera setVPDistance(double distance) {
-        if (distance <= 0)
-            throw new IllegalArgumentException("the distance must be more that 0");
+        if (alignZero(distance) <= 0)
+            throw new IllegalArgumentException("The distance must be greater than zero.");
         this.distance = distance;
         return this;
     }
 
     /**
-     * Calculates the ray that goes through the middle of a pixel i,j on the view
-     * plane
+     * Constructs a ray that passes through the middle of a pixel (i, j) on the view plane.
      *
-     * @param nX
-     * @param nY
-     * @param j
-     * @param i
-     * @return The ray that goes through the middle of a pixel i,j on the view plane
+     * @param nX the number of pixels in the X direction of the view plane
+     * @param nY the number of pixels in the Y direction of the view plane
+     * @param j  the column index of the pixel
+     * @param i  the row index of the pixel
+     * @return the constructed ray
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
         // Image center:
         Point pC = p0.add(vTo.scale(this.distance));
 
-        // Ratio:
-        double Ry = height / nY;
-        double Rx = width / nX;
+        // Ratio (pixel height and width):
+        double ry = height / nY;
+        double rx = width / nX;
 
         // Pixel[i,j] center
-        double yi = alignZero(-(i - (nY - 1) / 2.0) * Ry);
-        double xj = alignZero((j - (nX - 1) / 2.0) * Rx);
+        double yi = alignZero(-(i - (nY - 1) / 2.0) * ry);
+        double xj = alignZero((j - (nX - 1) / 2.0) * rx);
 
+        // Start at the center of the View Plane and then move according to Xj and to Yi
         Point pIJ = pC;
+        // To avoid a zero vector exception (when no need to move)
+        if (xj != 0) pIJ = pIJ.add(vRight.scale(xj));
+        if (yi != 0) pIJ = pIJ.add(vUp.scale(yi));
 
-        // To avoid a zero vector exception
-        if (xj != 0)
-            pIJ = pIJ.add(vRight.scale(xj));
-        if (yi != 0)
-            pIJ = pIJ.add(vUp.scale(yi));
-
-        Vector vIJ = pIJ.subtract(this.p0);
-
-        return new Ray(p0, vIJ);
+        return new Ray(p0, pIJ.subtract(this.p0));
     }
 }

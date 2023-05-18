@@ -3,7 +3,9 @@ package geometries;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+
 import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -36,6 +38,7 @@ public class Sphere extends RadialGeometry {
      *
      * @return the center point of the sphere
      */
+    @SuppressWarnings("unused")
     public Point getCenter() {
         return center;
     }
@@ -51,12 +54,6 @@ public class Sphere extends RadialGeometry {
         return (point.subtract(center)).normalize();
     }
 
-    /**
-     * Finds intersections of a ray with sphere and returns them as list of points
-     *
-     * @param ray
-     * @return List<Point> - list of intersections in geometric object
-     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         if (center.equals(ray.getP0()))

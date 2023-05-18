@@ -7,20 +7,20 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static primitives.Util.isZero;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for primitives.Vector class
  */
 class VectorTest {
 
-    Vector v1 = new Vector(1, 2, 3);
-    Vector v2 = new Vector(-2, -4, -6);
-    Vector v3 = new Vector(0, 3, -2);
+    private final Vector v1 = new Vector(1, 2, 3);
+    private final Vector v2 = new Vector(-2, -4, -6);
+    private final Vector v3 = new Vector(0, 3, -2);
 
     /**
-     * Test method for {@link primitives.Vector# add(primitives.Point)}.
+     * Test method for {@link primitives.Vector#add(primitives.Vector)}.
      */
     @Test
     void add() {
@@ -35,7 +35,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector# subtract(primitives.Point)}.
+     * Test method for {@link Vector#subtract(Point)}.
      */
     @Test
     void subtract() {
@@ -51,7 +51,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#  testScale(primitives.Point)}.
+     * Test method for {@link primitives.Vector#scale(double)}.
      */
     @Test
     void scale() {
@@ -66,17 +66,17 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#  testDotProduct(primitives.Point)}.
+     * Test method for {@link Vector#dotProduct(Vector)}.
      */
     @Test
     void dotProduct() {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Orthogonal vectors dot product doesn't equal zero
-        assertEquals(0,v1.dotProduct(v3), "dotProduct() for orthogonal vectors is not zero");
+        assertEquals(0, v1.dotProduct(v3), "dotProduct() for orthogonal vectors is not zero");
 
         // TC02: Wrong vectors dot product calculations
-        assertEquals(0,v1.dotProduct(v2) + 28, "dotProduct() wrong value");
+        assertEquals(0, v1.dotProduct(v2) + 28, "dotProduct() wrong value");
     }
 
 
@@ -104,29 +104,29 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#  testLengthSquared(primitives.Point)}.
+     * Test method for {@link primitives.Vector#lengthSquared()}.
      */
     @Test
     void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Test that length squared is proper
-        assertTrue(isZero(v1.lengthSquared() - 14), "ERROR: lengthSquared() wrong value");
+        assertEquals(14, v1.lengthSquared(), 0.000001, "ERROR: lengthSquared() wrong value");
     }
 
     /**
-     * Test method for {@link primitives.Vector#  testLength(primitives.Point)}.
+     * Test method for {@link primitives.Vector#length()}.
      */
     @Test
     void testLength() {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Test that length is proper
-        assertEquals(5,new Vector(0, 3, 4).length(), "ERROR: length() wrong value");
+        assertEquals(5, new Vector(0, 3, 4).length(), "ERROR: length() wrong value");
     }
 
     /**
-     * Test method for {@link primitives.Vector#  testNormalize(primitives.Point)}.
+     * Test method for {@link primitives.Vector#normalize()}.
      */
     @Test
     void testNormalize() {

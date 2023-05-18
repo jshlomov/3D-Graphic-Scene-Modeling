@@ -36,10 +36,10 @@ public class Cylinder extends Tube {
      *
      * @return the height of the cylinder
      */
+    @SuppressWarnings("unused")
     public double getHeight() {
         return height;
     }
-
 
     @Override
     public Vector getNormal(Point point) {
@@ -50,7 +50,7 @@ public class Cylinder extends Tube {
         try {
             return Util.isZero(point.subtract(p0).dotProduct(v)) || Util.isZero((point.subtract(p1).dotProduct(v)))
                     ? v : super.getNormal(point);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ignore) {
             // when the point is at a base center
             return v;
         }

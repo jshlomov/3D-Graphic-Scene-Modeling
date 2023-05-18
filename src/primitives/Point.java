@@ -30,14 +30,27 @@ public class Point {
         this.xyz = xyz;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public double getX() {
         return xyz.d1;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public double getY() {
         return xyz.d2;
     }
 
+    /**
+     * TODO
+     * @return
+     */
+    @SuppressWarnings("unused")
     public double getZ() {
         return xyz.d3;
     }

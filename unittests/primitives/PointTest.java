@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Unit tests for primitives.Point class
  */
 class PointTest {
-    Point p1 = new Point(1, 2, 3);
-    Point p2 = new Point(3, 5, 5);
+    private final Point p1 = new Point(1, 2, 3);
+    private final Point p2 = new Point(3, 5, 5);
 
     /**
      * Test method for {@link primitives.Point#add(Vector)}.
