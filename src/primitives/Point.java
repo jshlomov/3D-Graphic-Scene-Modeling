@@ -55,7 +55,6 @@ public class Point {
         return xyz.d3;
     }
 
-
     /**
      * Returns a new point that is the result of adding the given vector to this point.
      *
