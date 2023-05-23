@@ -51,6 +51,10 @@ class PointTest {
         // TC01: Point squared distance wrong calculation
         int sqrtDistance = 17;
         assertEquals(sqrtDistance, p2.distanceSquared(p1), "ERROR: DistanceSquared() wrong value");
+
+        // =============== Boundary Values Tests ==================
+        // TC11: Point distance with itself wrong calculation
+        assertEquals(0, p1.distance(p1), "ERROR: Distance() wrong value");
     }
 
     /**

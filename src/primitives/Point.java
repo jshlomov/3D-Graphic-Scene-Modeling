@@ -10,6 +10,10 @@ public class Point {
      */
     protected final Double3 xyz;
 
+    /** Zero's triad constant */
+    public static final Point ZERO = new Point(0,0,0);
+
+
     /**
      * Constructs a new point with the given coordinates.
      *
