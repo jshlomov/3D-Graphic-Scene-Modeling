@@ -101,4 +101,5 @@ public class RayTracerBasic extends RayTracerBase {
         double vr = alignZero(v.scale(-1).dotProduct(r));
         return material.ks.scale(pow(vr < 0 ? 0 : vr, material.nShininess));
     }
+
 }
