@@ -39,7 +39,7 @@ class PointTest {
                 "ERROR: Point - Point does not work correctly");
 
         // TC02: Point subtraction itself
-        assertThrows(IllegalArgumentException.class, () -> p1.subtract(p1), "Point - itself doesnt work corectly");
+        assertThrows(IllegalArgumentException.class, () -> p1.subtract(p1), "Point - itself doesnt work correctly");
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The Geometries class represents a collection of intersectable geometries.
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     private final List<Intersectable> items = new LinkedList<>();
 
@@ -44,10 +44,10 @@ public class Geometries implements Intersectable {
      * @return a list of intersection points, or null if no intersections exist
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> intersections = null;
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> intersections = null;
         for (var geometry : items) {
-            List<Point> geoIntersections = geometry.findIntersections(ray);
+            List<GeoPoint> geoIntersections = geometry.findGeoIntersectionsHelper(ray);
             if (geoIntersections != null) {
                 if (intersections == null)
                     intersections = new LinkedList<>();

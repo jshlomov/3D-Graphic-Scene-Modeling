@@ -139,11 +139,23 @@ public class Camera {
         return this;
     }
 
+    /**
+     * Sets the image writer for the camera.
+     *
+     * @param imageWriter The image writer to set.
+     * @return The camera itself.
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * Sets the ray tracer for the camera.
+     *
+     * @param rayTracer The ray tracer to set.
+     * @return The camera itself.
+     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
@@ -181,8 +193,10 @@ public class Camera {
 
     /**
      * Renders the image using the camera, image writer, and ray tracer.
+     *
+     * @return The camera itself
      */
-    public void renderImage() {
+    public Camera renderImage() {
 
         if (imageWriter == null || rayTracer == null)
             throw new MissingResourceException("Missing", "resource", "exception");
@@ -195,6 +209,7 @@ public class Camera {
                 imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
             }
         }
+        return this;
     }
 
     /**
@@ -221,8 +236,11 @@ public class Camera {
         if (imageWriter == null) // In case the image writer is empty
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
 
-        for (int i = 0; i < imageWriter.getNx(); i++) {
-            for (int j = 0; j < imageWriter.getNy(); j++) {
+        int nX = this.imageWriter.getNx();
+        int nY = this.imageWriter.getNy();
+
+        for (int i = 0; i < nX; i++) {
+            for (int j = 0; j < nY; j++) {
                 if (j % interval == 0 || i % interval == 0)
                     imageWriter.writePixel(i, j, color);
             }

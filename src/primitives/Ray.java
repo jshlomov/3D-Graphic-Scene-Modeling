@@ -1,5 +1,7 @@
 package primitives;
 
+import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 import static primitives.Util.isZero;
 
@@ -59,24 +61,29 @@ public class Ray {
 
     /**
      * finds the first point the ray intersect a body
+     * @param points all the intersections with the geometry
      * @return the first point
      */
-    public Point findClosestPoint(List<Point> intersections) {
-        if (intersections.isEmpty()) return null;
+    public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point; }
 
-        Point result = intersections.get(0);
-        double minDistance = p0.distanceSquared(result);
+    /**
+     * finds the first point the ray intersect a body
+     * @param intersections all the intersections with the geometry
+     * @return the first point and the geometry
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
+        GeoPoint result = null;
+        double minDistance = Double.POSITIVE_INFINITY;
         for (var i : intersections) {
-            double distance = p0.distanceSquared(i);
+            double distance = p0.distanceSquared(i.point);
             if (distance < minDistance) {
                 minDistance = distance;
                 result = i;
             }
         }
         return result;
-
-//        return intersections.isEmpty() ? null :intersections.stream()
-//                .min(Comparator.comparing(p0::distanceSquared)).get();
     }
 
     @Override
@@ -88,8 +95,6 @@ public class Ray {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Ray ray)
-            return p0.equals(ray.p0) && dir.equals(ray.dir);
-        return false;
+        return o instanceof Ray ray && p0.equals(ray.p0) && dir.equals(ray.dir);
     }
 }

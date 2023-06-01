@@ -16,23 +16,17 @@ class ImageWriterTest {
      */
     @Test
     void writeToImage() {
-        // Create an ImageWriter object
-        ImageWriter imageWriter = new ImageWriter("exe5first", 800, 500);
+        final int width = 801;
+        final int height = 501;
+        final int step = 50;
+        final Color red = new Color(java.awt.Color.RED);
+        final Color yellow = new Color(java.awt.Color.YELLOW);
 
+        ImageWriter imageWriter = new ImageWriter("exe5first", width, height);
         // Iterate through each pixel and write colors
-        for (int i = 0; i < imageWriter.getNx(); i++) {
-            for (int j = 0; j < imageWriter.getNy(); j++) {
-                if (j % 50 == 0 || i % 50 == 0) {
-                    // Write red color to pixels divisible by 50
-                    imageWriter.writePixel(i, j, new Color(java.awt.Color.RED));
-                } else {
-                    // Write yellow color to other pixels
-                    imageWriter.writePixel(i, j, new Color(java.awt.Color.YELLOW));
-                }
-            }
-        }
-
-        // Save the image file
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                    imageWriter.writePixel(i, j, j % step == 0 || i % step == 0 ? red : yellow);
         imageWriter.writeToImage();
     }
 }

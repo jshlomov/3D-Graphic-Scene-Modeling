@@ -115,9 +115,6 @@ public class Vector extends Point {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Vector vector)
-            return xyz.equals(vector.xyz);
-        return false;
-
+        return o instanceof Vector vector && xyz.equals(vector.xyz);
     }
 }

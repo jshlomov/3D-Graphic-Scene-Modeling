@@ -9,7 +9,11 @@ import scene.Scene;
  * It provides a framework for tracing rays and computing the color of intersected objects.
  */
 public abstract class RayTracerBase {
-    protected Scene scene;
+
+    /**
+     * The scene for ray tracing
+     */
+    protected final Scene scene;
 
     /**
      * Constructs a RayTracerBase object with the given scene.

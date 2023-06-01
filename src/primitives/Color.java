@@ -48,7 +48,7 @@ public class Color {
      *
      * @param rgb triad of Red/Green/Blue components
      */
-    private Color(Double3 rgb) {
+    public Color(Double3 rgb) {
         if (rgb.d1 < 0 || rgb.d2 < 0 || rgb.d3 < 0)
             throw new IllegalArgumentException("Negative color component is illegal");
         this.rgb = rgb;
@@ -82,6 +82,7 @@ public class Color {
      * @param colors one or more other colors to add
      * @return new Color object which is a result of the operation
      */
+    @SuppressWarnings("unused")
     public Color add(Color... colors) {
         double rr = rgb.d1;
         double rg = rgb.d2;
@@ -123,6 +124,7 @@ public class Color {
      * @param k reduction factor
      * @return new Color object which is the result of the operation
      */
+    @SuppressWarnings("unused")
     public Color reduce(double k) {
         if (k < 1) throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
         return new Color(rgb.reduce(k));
@@ -134,6 +136,7 @@ public class Color {
      * @param k reduction factor
      * @return new Color object which is the result of the operation
      */
+    @SuppressWarnings("unused")
     public Color reduce(Double3 k) {
         if (k.d1 < 1.0 || k.d2 < 1.0 || k.d3 < 1.0)
             throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
