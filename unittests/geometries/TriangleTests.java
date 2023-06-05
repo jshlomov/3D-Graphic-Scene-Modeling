@@ -83,5 +83,34 @@ public class TriangleTests {
         assertNull(tr.findIntersections(new Ray(new Point(-1, -2, -1), new Vector(0, 2, 3)))
                 , "Ray's crosses the triangle's edge");
     }
+
+    /**
+     * Test method for {@link Triangle#findGeoIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    public void findGeoIntersectionsHelper() {
+
+        // checking points inside/before the distance
+
+        Triangle tTriangle = new Triangle(
+                new Point(2,2,1),
+                new Point(-2,2,1),
+                new Point(2,-2,1)
+        );
+        Ray tRay = new Ray(new Point(0,1,-1), new Vector(0,0,1));
+        Ray tRay2 = new Ray(new Point(0,10,-1), new Vector(0,0,1));
+
+        // TC01: inside distance
+        assertEquals(1, tTriangle.findGeoIntersectionsHelper(tRay, 3).size(), "wrong");
+
+        // TC02: outside distance
+        assertNull(tTriangle.findGeoIntersectionsHelper(tRay, 1.5));
+
+        // TC03: intersect the plane but not the triangle
+        assertNull(tTriangle.findGeoIntersectionsHelper(tRay2, 3), "wrong");
+
+        // TC04: outside distance
+        assertNull(tTriangle.findGeoIntersectionsHelper(tRay2, 1.5));
+    }
 }
 

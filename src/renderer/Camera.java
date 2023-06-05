@@ -104,7 +104,6 @@ public class Camera {
      *
      * @return the distance between the camera and the view plane
      */
-    @SuppressWarnings("unused")
     public double getDistance() {
         return distance;
     }

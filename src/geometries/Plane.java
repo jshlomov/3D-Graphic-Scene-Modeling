@@ -7,6 +7,7 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -80,13 +81,15 @@ public class Plane extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         try {
             double nQMinusP0 = normal.dotProduct(q0.subtract(ray.getP0()));
             double nv = normal.dotProduct(ray.getDir());
             if (isZero(nv)) return null;
             double t = Util.alignZero(nQMinusP0 / nv);
-            return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
+            if (t <= 0 || alignZero(t - maxDistance) > 0)
+                return null;
+            return List.of(new GeoPoint(this, ray.getPoint(t)));
         } catch (IllegalArgumentException ignore) {
             // in case nQMinusP0 is 0 (Ray is neither orthogonal nor parallel
             // to the plane and begins in the same point)

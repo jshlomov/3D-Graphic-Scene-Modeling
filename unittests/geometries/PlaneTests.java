@@ -127,4 +127,26 @@ class PlaneTests {
         assertNull(plane.findIntersections(new Ray(new Point(0, 2, 2), new Vector(0, 0, 1)))
                 , "Ray's crosses the plane");
     }
+
+    /**
+     * Test method for {@link Plane#findGeoIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    public void findGeoIntersectionsHelper() {
+
+        // checking points inside/before the distance
+
+        Plane tPlane = new Plane(
+                new Point(1,1,1),
+                new Point(0,0,1),
+                new Point(1,0,1)
+        );
+        Ray tRay = new Ray(new Point(0,1,-1), new Vector(0,0,1));
+
+        // TC01: inside distance
+        assertEquals(1, tPlane.findGeoIntersectionsHelper(tRay, 2).size(), "wrong");
+
+        // TC02: outside distance
+        assertNull(tPlane.findGeoIntersectionsHelper(tRay, 1));
+    }
 }

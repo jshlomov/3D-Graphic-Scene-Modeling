@@ -52,4 +52,38 @@ class GeometriesTest {
         assertNull(collection.findIntersections(new Ray(new Point(-1, 0, 0), new Vector(1, 1, 0)))
                 , "No geometry shapes in the collection");
     }
+
+    /**
+     * Test method for {@link Geometries#findGeoIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    public void findGeoIntersectionsHelper() {
+        // checking points inside/before the distance
+        Triangle tTriangle1 = new Triangle(
+                new Point(2,2,1),
+                new Point(-2,2,1),
+                new Point(2,-2,1)
+        );
+
+        Triangle tTriangle3 = new Triangle(
+                new Point(2,2,10),
+                new Point(-2,2,10),
+                new Point(2,-2,10)
+        );
+
+        Triangle tTriangle2 = new Triangle(
+                new Point(2,2,5),
+                new Point(-2,2,5),
+                new Point(2,-2,5)
+        );
+        Geometries geometries = new Geometries(tTriangle1, tTriangle2, tTriangle3);
+
+        Ray tRay = new Ray(new Point(0,1,-1), new Vector(0,0,1));
+
+        // TC01: 2 intersections inside distance
+        assertEquals(1, geometries.findGeoIntersectionsHelper(tRay, 5).size(), "wrong");
+
+        // TC02: outside distance
+        assertNull(geometries.findGeoIntersectionsHelper(tRay, 1));
+    }
 }

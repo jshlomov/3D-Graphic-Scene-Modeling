@@ -127,4 +127,26 @@ class SphereTests {
         assertNull(testSphere.findIntersections(new Ray(new Point(3, 0, 0), v1)), "Ray's line out of sphere");
 
     }
+
+    /**
+     * Test method for {@link Triangle#findGeoIntersectionsHelper(Ray, double)}.
+     */
+    @Test
+    public void findGeoIntersectionsHelper() {
+
+        // checking points inside/before the distance
+
+        Sphere tSphere = new Sphere(new Point(0,0,3), 2);
+        Ray tRay = new Ray(new Point(0,1,-1), new Vector(0,0,1));
+        Ray tRay2 = new Ray(new Point(0,1,2), new Vector(0,0,1));
+
+        // TC01: 2 intersections, ray outside the sphere
+        assertEquals(2, tSphere.findGeoIntersectionsHelper(tRay, 7).size(), "wrong");
+        // TC02: 1 intersection, ray outside the sphere and one point out of distance
+        assertEquals(1, tSphere.findGeoIntersectionsHelper(tRay, 2.5).size(), "wrong");
+        // TC03: 1 intersection, ray inside the sphere
+        assertEquals(1, tSphere.findGeoIntersectionsHelper(tRay2, 3).size(), "wrong");
+        // TC01: 2 points out of distance
+        assertNull(tSphere.findGeoIntersectionsHelper(tRay, 1));
+    }
 }

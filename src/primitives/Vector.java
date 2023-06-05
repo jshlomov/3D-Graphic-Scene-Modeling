@@ -108,11 +108,6 @@ public class Vector extends Point {
     }
 
     @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         return o instanceof Vector vector && xyz.equals(vector.xyz);

@@ -1,9 +1,10 @@
 package renderer;
 
+import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
-import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 
 import static java.lang.Math.pow;
@@ -14,6 +15,8 @@ import static primitives.Util.alignZero;
  * It extends the RayTracerBase class and provides a simple algorithm for tracing rays and computing colors.
  */
 public class RayTracerBasic extends RayTracerBase {
+
+    private static final double DELTA = 0.1;
 
     /**
      * Constructs a RayTracerBasic object with the given scene.
@@ -33,7 +36,7 @@ public class RayTracerBasic extends RayTracerBase {
      */
     @Override
     public Color traceRay(Ray ray) {
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersectionsHelper(ray);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
         return intersections == null ? scene.background : calcColor(ray.findClosestGeoPoint(intersections), ray);
     }
 
@@ -68,8 +71,10 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // checks if sign(nl) == sign(nv)
-                Color il = lightSource.getIntensity(intersection.point);
-                color = color.add(il.scale(calcDiffusive(material, nl)), il.scale(calcSpecular(material, n, l, nl, v)));
+                if (unshaded(lightSource, intersection, l, n)) {
+                    Color il = lightSource.getIntensity(intersection.point);
+                    color = color.add(il.scale(calcDiffusive(material, nl)), il.scale(calcSpecular(material, n, l, nl, v)));
+                }
             }
         }
         return color;
@@ -100,6 +105,29 @@ public class RayTracerBasic extends RayTracerBase {
         Vector r = l.subtract(n.scale(2 * nl));
         double vr = alignZero(v.scale(-1).dotProduct(r));
         return material.ks.scale(pow(vr < 0 ? 0 : vr, material.nShininess));
+    }
+
+    /**
+     * Checks if a point is unshaded by a specific light source.
+     * It casts a ray from the point towards the light source and checks if any intersections occur
+     * between the point and the light source, indicating shading.
+     *
+     * @param ls  the light source
+     * @param gp  the geometric intersection point
+     * @param l   the direction vector towards the light source
+     * @param n   the normal vector at the intersection point
+     * @return true if the point is unshaded by the light source, false otherwise
+     */
+    private boolean unshaded(LightSource ls, GeoPoint gp, Vector l, Vector n) {
+        Vector lightDirection = l.scale(-1); // from point to light source
+
+        Vector deltaVector = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
+        Point point = gp.point.add(deltaVector);
+
+        Ray lightRay = new Ray(point, lightDirection);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, ls.getDistance(point));
+
+        return intersections == null;
     }
 
 }

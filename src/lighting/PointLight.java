@@ -10,7 +10,7 @@ import primitives.Vector;
  */
 public class PointLight extends Light implements LightSource {
 
-    private Point position;
+    private final Point position;
     private double kc = 1, kl = 0, kq = 0;
 
     /**
@@ -30,6 +30,7 @@ public class PointLight extends Light implements LightSource {
      * @param kc the constant attenuation factor to set
      * @return the point light itself
      */
+    @SuppressWarnings("unused")
     public PointLight setKc(double kc) {
         this.kc = kc;
         return this;
@@ -66,6 +67,11 @@ public class PointLight extends Light implements LightSource {
     @Override
     public Vector getL(Point p) {
         return p.subtract(position).normalize();
+    }
+
+    @Override
+    public double getDistance(Point point) {
+        return position.distance(point);
     }
 
     @Override

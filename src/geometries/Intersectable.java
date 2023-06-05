@@ -28,18 +28,32 @@ public abstract class Intersectable {
      * @param ray the ray to intersect with the object
      * @return a list of GeoPoints representing the intersections in the geometric object
      */
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
-        return findGeoIntersectionsHelper(ray);
+    public final List<GeoPoint> findGeoIntersections(Ray ray) {
+        return findGeoIntersectionsHelper(ray, Double.POSITIVE_INFINITY);
+    }
+
+    /**
+     * Finds intersections of a ray with the geometric object and returns them as a list of GeoPoints.
+     * Checks if the distance is valid up to the given maxDistance.
+     *
+     * @param ray         the ray to intersect with the object
+     * @param maxDistance the maximum allowed distance for intersections
+     * @return a list of GeoPoints representing the intersections in the geometric object
+     */
+    public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+        return findGeoIntersectionsHelper(ray, maxDistance);
     }
 
     /**
      * Helper method to find the geometric intersections of a ray with the object.
      * This method should be implemented by subclasses to provide the specific intersection logic.
+     * Checks the distance up to the given maxDistance.
      *
-     * @param ray the ray to intersect with the object
+     * @param ray         the ray to intersect with the object
+     * @param maxDistance the maximum allowed distance for intersections
      * @return a list of GeoPoints representing the intersections in the geometric object
      */
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);
 
     /**
      * The GeoPoint class represents a geometric intersection point.
@@ -48,14 +62,14 @@ public abstract class Intersectable {
     public static class GeoPoint {
 
         /**
-         * present the geometry its intersected
+         * The geometry object that is intersected.
          */
-        public Geometry geometry;
+        public final Geometry geometry;
 
         /**
-         * the closest intersection
+         * The point of intersection.
          */
-        public Point point;
+        public final Point point;
 
         /**
          * Constructs a GeoPoint with the given geometry and point of intersection.

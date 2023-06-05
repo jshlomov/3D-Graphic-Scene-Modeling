@@ -11,7 +11,7 @@ import primitives.Vector;
  */
 public class DirectionalLight extends Light implements LightSource {
 
-    private Vector direction;
+    private final Vector direction;
 
     /**
      * Constructs a DirectionalLight object with the given intensity and direction.
@@ -40,5 +40,10 @@ public class DirectionalLight extends Light implements LightSource {
                 "DirectionalLight{" +
                 "direction=" + direction +
                 '}';
+    }
+
+    @Override
+    public double getDistance(Point point) {
+        return Double.POSITIVE_INFINITY;
     }
 }
