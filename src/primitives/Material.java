@@ -6,6 +6,7 @@ package primitives;
  * and shininess (nShininess) of the material.
  */
 public class Material {
+
     /**
      * The diffuse reflection coefficient (kd) of the material.
      */
@@ -17,9 +18,21 @@ public class Material {
     public Double3 ks = Double3.ZERO;
 
     /**
+     * The reflection coefficient (kr) of the material.
+     */
+    public Double3 kr = Double3.ZERO;
+
+    /**
+     * The transmission coefficient (kt) of the material.
+     */
+    public Double3 kt = Double3.ZERO;
+
+    /**
      * The shininess (nShininess) of the material.
      */
     public int nShininess = 0;
+
+
 
     /**
      * Sets the diffuse reflection coefficient (kd) of the material.
@@ -62,6 +75,50 @@ public class Material {
      */
     public Material setKs(double ks) {
         this.ks = new Double3(ks);
+        return this;
+    }
+
+    /**
+     * Sets the reflection coefficient (kr) of the material.
+     *
+     * @param kr the reflection coefficient to set
+     * @return the material itself
+     */
+    public Material setKr(Double3 kr) {
+        this.kr = kr;
+        return this;
+    }
+
+    /**
+     * Sets the reflection coefficient (kr) of the material with a single value.
+     *
+     * @param kr the reflection coefficient to set
+     * @return the material itself
+     */
+    public Material setKr(double kr) {
+        this.kr = new Double3(kr);
+        return this;
+    }
+
+    /**
+     * Sets the transmission coefficient (kt) of the material.
+     *
+     * @param kt the transmission coefficient to set
+     * @return the material itself
+     */
+    public Material setKt(Double3 kt) {
+        this.kt = kt;
+        return this;
+    }
+
+    /**
+     * Sets the transmission coefficient (kt) of the material with a single value.
+     *
+     * @param kt the transmission coefficient to set
+     * @return the material itself
+     */
+    public Material setKt(double kt) {
+        this.kt = new Double3(kt);
         return this;
     }
 

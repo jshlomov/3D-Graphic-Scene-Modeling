@@ -181,9 +181,10 @@ public class LightsTests {
       scene1.geometries.add(sphere);
       scene1.lights
               .addAll(List.of(new SpotLight(new Color(400,600,350), new Point(-120,-40,0), new Vector(1, 1, 0.5))
-                      .setNarrowBeam(2).setKl(0.00001).setKq(0.000001),
-                      new PointLight(new Color(550,200,750), new Point(80,50,25))
-                              .setKl(0.00001).setKq(0.0001)
+                      .setNarrowBeam(2).setKl(0.0000001).setKq(0.00000001),
+                      new PointLight(new Color(550,700,750), new Point(80,50,25))
+                              .setKl(0.00001).setKq(0.0001),
+                      new DirectionalLight(new Color(700,200,400), new Vector(1,-1,1))
                       ));
 
       ImageWriter imageWriter = new ImageWriter("sphereMultiLights", 500, 500);
