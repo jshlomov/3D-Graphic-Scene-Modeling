@@ -7,7 +7,8 @@ import primitives.Vector;
 
 import java.util.MissingResourceException;
 
-import static primitives.Util.*;
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * The Camera class represents a camera in a 3D scene.
@@ -202,27 +203,23 @@ public class Camera {
 
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
-
-        for (int i = 0; i < nX; i++) {
-            for (int j = 0; j < nY; j++) {
-                imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
-            }
-        }
+        for (int i = 0; i < nX; i++)
+            for (int j = 0; j < nY; j++)
+                castRay(nX, nY, j, i);
         return this;
     }
 
     /**
-     * Casts a ray through a pixel (i, j) on the view plane and returns the color
-     * of the intersected object.
+     * Casts a ray through a pixel (i, j) on the view plane and color the pixel with the color
+     * of the ray.
      *
      * @param nX the number of pixels in the X direction of the view plane
      * @param nY the number of pixels in the Y direction of the view plane
      * @param j  the column index of the pixel
      * @param i  the row index of the pixel
-     * @return the color of the intersected object
      */
-    private Color castRay(int nX, int nY, int j, int i) {
-        return rayTracer.traceRay(constructRay(nX, nY, j, i));
+    private void castRay(int nX, int nY, int j, int i) {
+        imageWriter.writePixel(j, i, rayTracer.traceRay(constructRay(nX, nY, j, i)));
     }
 
     /**
@@ -230,8 +227,9 @@ public class Camera {
      *
      * @param interval the interval between grid lines
      * @param color    the color of the grid lines
+     * @return The camera itself
      */
-    public void printGrid(int interval, Color color) {
+    public Camera printGrid(int interval, Color color) {
         if (imageWriter == null) // In case the image writer is empty
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
 
@@ -244,6 +242,8 @@ public class Camera {
                     imageWriter.writePixel(i, j, color);
             }
         }
+
+        return this;
     }
 
     /**

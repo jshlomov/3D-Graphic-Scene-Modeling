@@ -5,7 +5,6 @@ import static java.awt.Color.*;
 import org.junit.jupiter.api.Test;
 
 import geometries.*;
-import lighting.*;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
@@ -102,6 +101,7 @@ public class LightsTests {
       camera1.setImageWriter(imageWriter) //
               .setRayTracer(new RayTracerBasic(scene1)) //
               .renderImage() //
+              //.printGrid(50, new Color(yellow)) //
               .writeToImage(); //
    }
 

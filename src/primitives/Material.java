@@ -30,9 +30,7 @@ public class Material {
     /**
      * The shininess (nShininess) of the material.
      */
-    public int nShininess = 0;
-
-
+    public int nShininess = 1;
 
     /**
      * Sets the diffuse reflection coefficient (kd) of the material.

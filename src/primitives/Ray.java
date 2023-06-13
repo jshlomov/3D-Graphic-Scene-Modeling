@@ -22,7 +22,6 @@ public class Ray {
 
     private static final double DELTA = 0.1;
 
-
     /**
      * Constructs a new Ray object with the specified starting point and direction vector.
      *
@@ -36,9 +35,9 @@ public class Ray {
 
     /**
      * Constructor calculate the movement normal by delta
-     * @param v
-     * @param p
-     * @param n
+     * @param v     the direction
+     * @param p     rays point
+     * @param n     normal vector
      */
     public Ray(Vector v, Point p , Vector n) {
         dir = v.normalize();

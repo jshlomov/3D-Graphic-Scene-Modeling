@@ -55,7 +55,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         if (center.equals(ray.getP0()))
             return List.of(new GeoPoint(this, ray.getPoint(radius)));
 
@@ -66,19 +66,17 @@ public class Sphere extends RadialGeometry {
         if (thSquared <= 0) return null;
         double th = Math.sqrt(thSquared);
 
-        double t1 = tm + th;
-        if (alignZero(t1) <= 0) return null;
+        double t2 = alignZero(tm + th);
+        if (t2 <= 0) return null;
 
-        double t2 = tm - th;
-        if (alignZero(t2 - maxDistance) > 0) return null; // both of them out of distance
+        double t1 = alignZero(tm - th);
+        if (alignZero(t1 - maxDistance) > 0) return null; // both of them out of distance
 
-        if (alignZero(t2) > 0) {
-            if (alignZero(t1 - maxDistance) <= 0) //checks if t1 in the distance
-                return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
-            else
-                return List.of(new GeoPoint(this,ray.getPoint(t2)));
-        }
-        else
-            return List.of(new GeoPoint(this,ray.getPoint(t1)));
+        if (alignZero(t2 - maxDistance) <= 0) //checks if t2 in the distance
+            return t1 <= 0 ? List.of(new GeoPoint(this, ray.getPoint(t2)))
+                    : List.of(new GeoPoint(this, ray.getPoint(t2)), new GeoPoint(this, ray.getPoint(t1)));
+
+        // t2 is beyond the max distance
+        return t1 <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t1)));
     }
 }

@@ -3,15 +3,16 @@
  */
 package renderer;
 
-import geometries.Plane;
-import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
+import lighting.PointLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
+
+import java.util.List;
 
 import static java.awt.Color.*;
 
@@ -20,9 +21,9 @@ import static java.awt.Color.*;
  * (with transparency)
  * @author dzilb */
 public class ReflectionRefractionTests {
-    private Scene scene = new Scene("Test scene");
+    private final Scene scene = new Scene("Test scene");
 
-    /** Produce a picture of a sphere lighted by a spot light */
+    /** Produce a picture of a sphere lighted by a spotlight */
     @Test
     public void twoSpheres() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -105,6 +106,9 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
+    /**
+     * presents transparency with two spheres
+     */
     @Test
     public void twoSpheresAndTwoTriangles() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -121,6 +125,42 @@ public class ReflectionRefractionTests {
 
         camera.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
                 .setRayTracer(new RayTracerBasic(scene)) //
+                .renderImage() //
+                .writeToImage();
+    }
+
+    /**
+     * test with few shapes and two lights present reflection and transparency
+     */
+    @Test
+    public void fourShapesWithAllEffects() {
+        Camera camera = new Camera(new Point(10,3.5,3), new Vector(-3,-1,-1), new Vector(-1,0,3))
+                .setVPSize(3,3).setVPDistance(5);
+
+        Scene scene1 = new Scene("new test");
+
+        scene1.geometries.add(
+                new Triangle(new Point(2,-2,0), new Point(-2,2,0), new Point(0,0,2)).setEmission(new Color(10,10,10))
+                        .setMaterial(new Material().setKr(1)),
+                new Triangle(new Point(2,-2,0), new Point(-2,2,0), new Point(3,3,0)).setEmission(new Color(20,20,20))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.2).setShininess(100)),
+                new Sphere(new Point(1.5,0.5,1), 0.5).setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(100)),
+                new Sphere(new Point(2,-0.75,0.5), 0.3).setEmission(new Color(YELLOW))
+                        .setMaterial(new Material().setKr(1)),
+                new Triangle(new Point(2,2,1), new Point(3,1,1), new Point(2,2,2)).setEmission(new Color(GREEN))
+                        .setMaterial(new Material().setKd(0.00001).setKs(0.0000002).setShininess(30).setKt(0.6)),
+                new Triangle(new Point(3,1,1), new Point(2,2,2), new Point(3,1,2)).setEmission(new Color(GREEN))
+                        .setMaterial(new Material().setKd(0.00001).setKs(0.0000002).setShininess(30).setKt(0.6))
+        );
+
+        scene1.lights.addAll(List.of(new PointLight(new Color(500,400,400), new Point(20,4,20)).setKl(0.00001).setKq(0.000006),
+                new SpotLight(new Color(700, 400, 400), new Point(-20,2,5), new Vector(1,0,0)).setKl(0.0000001).setKq(0.000005)
+
+                ));
+
+        camera.setImageWriter(new ImageWriter("exe7 test1", 500, 500)) //
+                .setRayTracer(new RayTracerBasic(scene1)) //
                 .renderImage() //
                 .writeToImage();
     }
