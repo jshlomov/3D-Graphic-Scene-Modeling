@@ -134,8 +134,45 @@ public class ReflectionRefractionTests {
      */
     @Test
     public void fourShapesWithAllEffects() {
+        Camera camera = new Camera(new Point(8,8,4), new Vector(-1,-1,-0.4), new Vector(-1,0,2.5))
+                .setVPSize(3.2,3).setVPDistance(5).setFocalDistance(10).setApertureRadius(8);
+        Scene scene1 = new Scene("new test");
+
+        scene1.geometries.add(
+                new Triangle(new Point(2,-2,0), new Point(-2,2,0), new Point(-2,2,2)).setEmission(new Color(50,50,50))
+                        .setMaterial(new Material().setKr(1)),
+                new Triangle(new Point(2,-2,0), new Point(-2,2,2), new Point(2,-2,2)).setEmission(new Color(50,50,50))
+                        .setMaterial(new Material().setKr(1)),
+                new Triangle(new Point(2,-2,0), new Point(-2,2,0), new Point(3,3,0)).setEmission(new Color(20,20,20))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.2).setShininess(100)),
+                new Sphere(new Point(1.5,0.5,1), 0.5).setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.1).setShininess(100)),
+                new Sphere(new Point(2,-0.75,0.5), 0.3).setEmission(new Color(YELLOW))
+                        .setMaterial(new Material().setKr(1)),
+                new Triangle(new Point(2,2,1), new Point(3,1,1), new Point(2,2,2)).setEmission(new Color(GREEN))
+                        .setMaterial(new Material().setKd(0.00001).setKs(0.0000002).setShininess(30).setKt(0.6)),
+                new Triangle(new Point(3,1,1), new Point(2,2,2), new Point(3,1,2)).setEmission(new Color(GREEN))
+                        .setMaterial(new Material().setKd(0.00001).setKs(0.0000002).setShininess(30).setKt(0.6))
+        );
+
+        scene1.lights.addAll(List.of(new PointLight(new Color(500,400,400), new Point(20,4,20)).setKl(0.00001).setKq(0.000006),
+                new SpotLight(new Color(700, 400, 400), new Point(-20,2,5), new Vector(1,0,0)).setKl(0.0000001).setKq(0.000005)
+
+                ));
+
+        camera.setImageWriter(new ImageWriter("exe7 test5", 500, 500)) //
+                .setRayTracer(new RayTracerSuperSampling(scene1,camera,9)) //
+                .renderImage() //
+                .writeToImage();
+    }
+
+    /**
+     * test with few shapes and two lights present reflection and transparency
+     */
+    @Test
+    public void fourShapesWithAllEffects1() {
         Camera camera = new Camera(new Point(10,3.5,3), new Vector(-3,-1,-1), new Vector(-1,0,3))
-                .setVPSize(3,3).setVPDistance(5);
+                .setVPSize(3,3).setVPDistance(6);
 
         Scene scene1 = new Scene("new test");
 
@@ -157,7 +194,7 @@ public class ReflectionRefractionTests {
         scene1.lights.addAll(List.of(new PointLight(new Color(500,400,400), new Point(20,4,20)).setKl(0.00001).setKq(0.000006),
                 new SpotLight(new Color(700, 400, 400), new Point(-20,2,5), new Vector(1,0,0)).setKl(0.0000001).setKq(0.000005)
 
-                ));
+        ));
 
         camera.setImageWriter(new ImageWriter("exe7 test1", 500, 500)) //
                 .setRayTracer(new RayTracerBasic(scene1)) //

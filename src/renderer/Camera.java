@@ -23,6 +23,10 @@ public class Camera {
     private double distance;
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
+    private double apertureRadius = 1.0;
+    private double focalDistance = 0.0;
+
+
 
     /**
      * Constructs a camera with the given parameters.
@@ -110,6 +114,23 @@ public class Camera {
     }
 
     /**
+     * Gets the aperture radius
+     * @return apertureRadius
+     */
+    public double getApertureRadius() {
+        return  apertureRadius;
+    }
+
+
+    /**
+     * Gets the focal distance
+     * @return focalDistance
+     */
+    public double getFocalDistance() {
+        return focalDistance;
+    }
+
+    /**
      * Sets the size of the view plane.
      *
      * @param width  the width of the view plane
@@ -158,6 +179,26 @@ public class Camera {
      */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
+        return this;
+    }
+
+    /**
+     * sets the aperture radius in the camera
+     * @param apertureRadius size of aperture
+     * @return the camera itself
+     */
+    public Camera setApertureRadius(double apertureRadius) {
+        this.apertureRadius = apertureRadius;
+        return this;
+    }
+
+    /**
+     * sets the focal distance
+     * @param focalDistance the distance point to focus
+     * @return the camera itself
+     */
+    public Camera setFocalDistance(double focalDistance) {
+        this.focalDistance = focalDistance;
         return this;
     }
 
@@ -254,4 +295,6 @@ public class Camera {
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
         imageWriter.writeToImage();
     }
+
+
 }
