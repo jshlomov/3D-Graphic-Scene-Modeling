@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7c901-38b5-4a04-8286-95284b26e3e4" name="Changes" comment="Stages 6 &amp; 7 with Dan">
-      <change afterPath="$PROJECT_DIR$/src/renderer/BlackBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/Pixel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerSuperSampling.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/FullImageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="26b7c901-38b5-4a04-8286-95284b26e3e4" name="Changes" comment="pro8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISE5783_7162_7261.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/BlackBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/BlackBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerSuperSampling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerSuperSampling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/FullImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/FullImageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +51,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2MKxrVp5gm2NSq7xbFJzhwOptZU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -79,7 +75,7 @@
     "aspect.path.notification.shown": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "C:/mavo/ISE5783_7162_7261",
+    "last_opened_file_path": "C:/aaabb/Render_images-master/Render_images-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -116,27 +112,11 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in ISE5783_7162_7261">
+  <component name="RunManager" selected="JUnit.FullImageTest.fullImage2">
     <configuration name="All in ISE5783_7162_7261" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7162_7261" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FullImageTest.fullImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7162_7261" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.FullImageTest" />
-      <option name="METHOD_NAME" value="fullImage" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -152,6 +132,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.FullImageTest" />
       <option name="METHOD_NAME" value="fullImage1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FullImageTest.fullImage2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7162_7261" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.FullImageTest" />
+      <option name="METHOD_NAME" value="fullImage2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -191,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in ISE5783_7162_7261" />
+        <item itemvalue="JUnit.FullImageTest.fullImage2" />
         <item itemvalue="JUnit.FullImageTest.fullImage1" />
-        <item itemvalue="JUnit.FullImageTest.testFinal" />
         <item itemvalue="JUnit.FullImageTest.test" />
-        <item itemvalue="JUnit.FullImageTest.fullImage" />
+        <item itemvalue="JUnit.All in ISE5783_7162_7261" />
+        <item itemvalue="JUnit.FullImageTest.testFinal" />
       </list>
     </recent_temporary>
   </component>
@@ -290,6 +286,9 @@
       <workItem from="1687960464764" duration="1228000" />
       <workItem from="1687983709186" duration="2451000" />
       <workItem from="1688116569826" duration="945000" />
+      <workItem from="1688243340931" duration="4622000" />
+      <workItem from="1688270201817" duration="12342000" />
+      <workItem from="1688285696144" duration="6476000" />
     </task>
     <task id="LOCAL‎-00001" summary="given modules">
       <created>1677951338571</created>
@@ -494,7 +493,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1686676680454</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="pro8">
+      <created>1688245342383</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1688245342383</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +541,8 @@
     <MESSAGE value="push tag" />
     <MESSAGE value="PRO7.2" />
     <MESSAGE value="Stages 6 &amp; 7 with Dan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stages 6 &amp; 7 with Dan" />
+    <MESSAGE value="pro8" />
+    <option name="LAST_COMMIT_MESSAGE" value="pro8" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Main_java$GeometriesTest_findIntersections.ic" NAME="GeometriesTest.findIntersections Coverage Results" MODIFIED="1683563447491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

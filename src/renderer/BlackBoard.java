@@ -11,12 +11,11 @@ import java.util.Random;
 /**
  * Class for create BlackBoard of points
  */
-public class BlackBoard {
+public abstract class BlackBoard {
 
     /**
      * constructor list of points to create circle black board
-     * by get size (x/y), 3Dpoint and direction vectors, and radius of circle
-     *
+     * by get size (x/y), 3D point and direction vectors, and radius of circle
      * the given center Point always return in the list.
      *
      *  @param xy number of points in x and y. NEED TO BE over than 1 (1 return only the given center point)

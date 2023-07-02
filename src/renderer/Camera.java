@@ -5,6 +5,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
 import java.util.MissingResourceException;
 
 import static primitives.Util.alignZero;
@@ -26,6 +27,7 @@ public class Camera {
     private double apertureRadius = 1.0;
     private double focalDistance = 0.0;
 
+    private PixelManager pixelManager;
 
 
     /**
@@ -115,15 +117,17 @@ public class Camera {
 
     /**
      * Gets the aperture radius
+     *
      * @return apertureRadius
      */
     public double getApertureRadius() {
-        return  apertureRadius;
+        return apertureRadius;
     }
 
 
     /**
      * Gets the focal distance
+     *
      * @return focalDistance
      */
     public double getFocalDistance() {
@@ -184,6 +188,7 @@ public class Camera {
 
     /**
      * sets the aperture radius in the camera
+     *
      * @param apertureRadius size of aperture
      * @return the camera itself
      */
@@ -194,6 +199,7 @@ public class Camera {
 
     /**
      * sets the focal distance
+     *
      * @param focalDistance the distance point to focus
      * @return the camera itself
      */
@@ -238,15 +244,46 @@ public class Camera {
      * @return The camera itself
      */
     public Camera renderImage() {
-
         if (imageWriter == null || rayTracer == null)
             throw new MissingResourceException("Missing", "resource", "exception");
 
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
+
         for (int i = 0; i < nX; i++)
             for (int j = 0; j < nY; j++)
                 castRay(nX, nY, j, i);
+        return this;
+    }
+
+    /**
+     * Renders the image with threads using the camera, image writer, and ray tracer.
+     * @param threadsCount number of threads
+     * @param printInterval the interval
+     * @return the camera itself
+     */
+    public Camera renderImageWithThreads(int threadsCount, double printInterval) {
+        int nY = this.imageWriter.getNy();
+        int nX = this.imageWriter.getNx();
+        pixelManager = new PixelManager(nY, nX, printInterval);
+
+        var threads = new LinkedList<Thread>(); // list of threads
+        while (threadsCount-- > 0) // add appropriate number of threads
+            threads.add(new Thread(() -> { // add a thread with its code
+                PixelManager.Pixel pixel; // current pixel(row,col)
+                // allocate pixel(row,col) in loop until there are no more pixels
+                while ((pixel = pixelManager.nextPixel()) != null)
+                    // cast ray through pixel (and color it – inside castRay)
+                    castRay(nX, nY, pixel.col(), pixel.row());
+            }));
+        // start all the threads
+        for (var thread : threads) thread.start();
+        // wait until all the threads have finished
+        try {
+            for (var thread : threads) thread.join();
+        } catch (InterruptedException ignore) {
+        }
+
         return this;
     }
 
@@ -261,6 +298,8 @@ public class Camera {
      */
     private void castRay(int nX, int nY, int j, int i) {
         imageWriter.writePixel(j, i, rayTracer.traceRay(constructRay(nX, nY, j, i)));
+        if (pixelManager != null)
+            pixelManager.pixelDone();
     }
 
     /**
